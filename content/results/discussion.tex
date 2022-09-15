@@ -1,0 +1,52 @@
+\subsection{Discussion} \label{sec:discussion}
+
+One can find in this section insights extracted from the presented results.
+First of all, the proposed Acoustic Odometry system proves to be a viable
+auxiliary source of odometry for wheeled robots in loose sandy terrain.
+\Cref{fig:other-methods} and \cref{fig:VO-challenge} show that audio-based
+odometry is more accurate than wheel odometry, and its accuracy can be
+comparable to state-of-the-art commercially available visual-based methods and
+that it can be more accurate than visual odometry in the presence of dynamic
+objects and lightning. 
+
+Secondly, the selected model behavior changes from one device to another.
+Devices that output an audio signal with a higher power tend to result in
+higher speed predictions, as can be seen in \cref{fig:high-slip}, while the
+overall predicted curve is very similar. Meaning that even if the absolute
+value of the predicted velocity is not accurate, the model is able to recognize
+slippage conditions across different devices. Even with devices not present
+during training, as is the case in \cref{fig:other-methods}, where none of the
+devices shown in the evaluation were present during training.
+
+Thirdly, white noise affects the performance of the proposed system, as could
+be expected. Nevertheless, a considerably large noise power compared to the
+signal power does not make the selected model unusable. As it can be seen in
+\cref{fig:noise-effect}, where a noise with a power 10 times the one of the
+audio signal (SNR -10 dB) only significantly affects the predictions on
+speeds close to 0. This indicates that white noise only significantly affects
+the prediction of speeds under a threshold determined by the signal-to-noise
+power ratio.
+
+Finally, this work can be compared with other odometry methods. On one hand,
+only \cite{marchegiani2018a} proposes an audio-based odometry method, claiming
+an average absolute error of 0.065 m/s when predicting velocities, which is
+comparable to the average \nameref{para:ATE} 0.001 m accumulated over the 66
+15 ms long audio frames contained in one second. But this work also shows that
+the actual average \nameref{para:RPE} in a 1 second window is 0.005 m. However,
+it remains unknown the performance of the proposed system on rotational
+movement and under the presence of multiple moving wheels. The comparison
+should also be taken with a grain of salt as no common benchmarking data
+exists.
+
+On the other hand, the method presented in \cite{Ojeda2006}, where wheel
+slippage is identified using the motor current and compensated in the wheel
+odometry computation, still outperforms the proposed system while being a
+computationally inexpensive method. They demonstrate accumulated drift of up to
+1\% of the traveled distance using the same range of longitudinal velocities
+under 0.07 m/s, while the proposed system results in an average error of
+16\% of the traveled distance across all devices and evaluation recordings.
+On the other hand, the authors mention that current-based slippage detection
+fails to correctly identify a wheel slipping over rocks instead of sand.
+Audio-based methods do have the potential to identify wheel slippage in both
+scenarios and \cref{para:recommendations} discusses several improvements that
+could be applied to the proposed system in order to improve its performance.

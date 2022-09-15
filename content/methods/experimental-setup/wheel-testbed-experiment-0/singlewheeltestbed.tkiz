@@ -1,0 +1,49 @@
+\begin{tikzpicture}[
+        latex-,very thick,green,text=black,fill=green
+    ]
+
+    % Include the image in a node
+    \node [above right,inner sep=0] (image) at (0,0) {
+        \includegraphics[angle=180, width=0.9\textwidth]{
+            \currfiledir/singlewheeltestbed.jpg
+        }
+    };
+
+    % Create scope with normalized axes
+    \begin{scope}[
+            x={($0.1*(image.south east)$)},
+            y={($0.1*(image.north west)$)}]
+
+
+        % Draw grid grid for placement, comment out to disable
+        % \draw[lightgray,step=1] (image.south west) grid (image.north east);
+        % \foreach \x in {0,1,...,10} { \node [below] at (\x,0) {\x}; }
+        % \foreach \y in {0,1,...,10} { \node [left] at (0,\y) {\y};}
+
+        % Labels
+        \draw (2,4) rectangle (4.2,9.5) 
+            node[below left, fill=green]{\small carriage};
+
+        \draw (1.5,6.7) -- ++ (-0.5,1.5) node[fill=white, align=center]{
+            \small Translation\\ motor
+        };
+
+        \draw (9,8) -- ++ (0,1) node[fill=white, align=center]{
+            \small Longitudinal\\ slide guide
+        };
+
+        \draw (3.75,8) -- ++ (0.7,0.2) node[right, fill=white]{
+            \small Vertical slide guide
+        };
+
+        \draw (7,3) -- ++ (0,-1) node[fill=white, align=center]{
+            \small Leveling apparatus
+        };
+
+        \draw (3,5) -- ++ (0,-2) node[fill=white, align=center]{
+            \small Motorized wheel
+        };
+
+    \end{scope}
+
+\end{tikzpicture}

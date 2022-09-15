@@ -1,0 +1,34 @@
+\subsection{Objectives and contributions} \label{subsec:objectives}
+
+The goal of this work is to study the feasibility of an audio-based odometry
+system, since it has the potential of providing inexpensive robust robot
+localization in the future, as mentioned in \cref{subsec:motivation}. More
+concretely, the objectives of this thesis are:
+
+\begin{itemize}
+    \item To design a system capable of estimating the longitudinal velocity of
+          a wheel driving over loose sandy terrain using only acoustic information.
+          
+    \item To quantitatively evaluate the performance of acoustic odometry
+          against other odometry systems.
+          
+    \item To qualitatively evaluate the feasibility of using audio-based
+          odometry in a real-world situation.
+\end{itemize}
+
+Due to the difficulty in finding publicly available audio odometry datasets,
+the problem of robot localization is simplified to a single dimension over a
+unique terrain type: A wheel that can only move along a longitudinal axis over
+loose sandy terrain. As this scenario can be easily reproduced with the
+available experimental equipment, making it possible to gather a whole new
+dataset.
+
+\Cref{chap:methods} describes the proposed system, including
+\cref{sec:experimental-setup}, where it is described how the data used in this
+work was gathered, \cref{sec:datasets}, which explains how that data is
+processed and \cref{sec:models}, where one can find details about how processed
+data is used to predict the longitudinal velocity of a wheeled robot.
+\Cref{chap:results} objectively states its evaluation results with a subjective
+discussion in \cref{sec:discussion}. Finally, \cref{chap:conclusions}
+summarizes the most important insights from this research as well as
+recommendations for future research on the field of acoustic odometry.

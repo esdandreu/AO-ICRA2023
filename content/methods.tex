@@ -1,0 +1,23 @@
+\section{Methods} \label{chap:methods}
+
+This work proposes a system capable of estimating motion from audio signals.
+Shown in \cref{fig:system}, it is a modular system that consists of two
+components: a feature extraction module composed of several \emph{extractor}
+submodules. It receives a multi-channel audio signal of a fixed length and
+outputs a group of feature vectors, one per extractor submodule; and a
+prediction model that receives a segment composed of a finite number of feature
+frames and outputs a motion estimation. Between both modules, previous feature
+frames are stored in memory.
+
+The sections present in this chapter deepen in the different modules that
+compose the proposed system. Starting with the audio signal,
+\cref{sec:experimental-setup} describes how the data used in this work was
+gathered. \Cref{sec:datasets} describes the feature extraction module and the
+segment composition. Finally, \cref{sec:models} describes the different
+prediction models used in this work.
+
+\include*{\subdir/experimental-setup}
+
+\include*{\subdir/feature-extraction}
+
+\include*{\subdir/models}

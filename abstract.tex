@@ -1,0 +1,29 @@
+This work paves the way toward inexpensive robust robot localization by
+proposing a system capable of estimating the longitudinal velocity of a wheeled
+robot on granular non-cohesive soil using only acoustic data. Many future
+ground mobile robots will be equipped with microphones for human-robot
+interaction purposes and there already exist a wide variety of efficient
+methods for audio signal processing. The proposed system can be combined with
+other self-localization methods to strengthen their robustness with a minimal
+additional price.
+
+The proposed system consists of an audio feature extraction module, based on
+gammatone filterbanks, and a prediction module, based on a convolutional neural
+network. Experiments in a single wheel testbed with a wheel driving up to
+speeds of 0.07 m/s over loose sandy terrain with a wide range of slippage, show
+that the system is a feasible auxiliary source of odometry with an average
+drift of 5 mm/s. The system is able to make a prediction from a single audio
+frame with a duration of 15 ms in only 2 ms on a user-level commercially
+available CPU. Additional experiments with white Gaussian noise show that high
+noise power (signal-to-noise ratio of -10 dB) only affects significantly the
+prediction of speeds close to 0.
+
+A qualitative evaluation of the proposed system against other sources of
+odometry shows that acoustic and visual methods' vulnerabilities do not
+overlap, which indicates that their combination would be beneficial from the
+robustness point of view. While the proposed system can recognize slippage even
+using devices not present during training, the estimated magnitude of the
+longitudinal velocity depends on the device used and the power of the sensed
+audio signal. This indicates that combining the proposed system with wheel
+odometry input could significantly increase the performance and generalization
+of the system while keeping a small computational cost.
