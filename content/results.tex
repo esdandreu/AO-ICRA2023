@@ -1,18 +1,18 @@
 \section{Results} \label{sec:results}
 
 \Cref{table:results-selected-model} shows the average performance of the
-selected model across all seven evaluation recordings and devices. Performance
-is measured with commonly used odometry and simultaneous localization and
-mapping metrics as described in \cite{Measuring2019}. \hl{Additionally APE}
-\Cref{fig:high-slip} shows the its results on an evaluation recording
-characterized by high slippage driving conditions using two different devices.
+selected in the \nameref{subsubsec:evaluatio-dataset} dataset. Performance is measured
+with commonly used odometry and simultaneous localization and mapping metrics
+as described in \cite{Measuring2019}. \Cref{fig:high-slip} shows its results on
+an evaluation recording characterized by high slippage driving conditions using
+two different devices.
 
 \begin{table}
     \centering
     \begin{tabular}{|c|c|c|}
         \hline
-                          & Mean ATE [m] & Mean RPE [m/s] \\ \hline
-        Acoustic Odometry & $1.02e-03$   & $5.10e-03$     \\
+                        & Mean ATE [m] & Mean RPE [m/s] \\ \hline
+        All microphones & $1.02e-03$   & $5.10e-03$     \\
         \hline
     \end{tabular}
     \caption[Selected model average performance across evaluation recordings
@@ -24,28 +24,33 @@ characterized by high slippage driving conditions using two different devices.
 \end{table}
 
 
-\begin{figure}
+\begin{figure*}
     \centering
-    \includegraphics[width=0.95\linewidth]{\subdir/high-slip.png}
-    \caption[Selected model on high slippage conditions]{Selected model
-        evaluated on a recording characterized by high slippage conditions
-        using two different devices.\hl{WIP}}
-    \label{fig:high-slip}
-\end{figure}
+    \begin{tikzpicture} \node [anchor=south west] at (0,0) {
+            \includegraphics[width=\textwidth]{\subdir/high-slip.png}
+        }; \node [anchor=south west, text width=.6\textwidth] at (0.5,0.5) {
+            \caption{Selected model evaluated on a recording characterized by high
+                slippage conditions using two different devices.}
+            \label{fig:high-slip}
+        }; \end{tikzpicture}
+\end{figure*}
 
 \subsection{Noise} One can see in \cref{fig:noise-effect} the behavior of the
 selected model against white noise. Generally, white noise increases the value
 of the estimated motion. Signal-to-Noise ratios of -20 dB impede the model to
 recognize situations where the wheel is not moving.
 
-\begin{figure}
+\begin{figure*}
     \centering
-    \includegraphics[width=\linewidth]{\subdir/noise-effect.png}
-    \caption[Selected model with white noise]{Selected model evaluated on a
-        recording with added white noise with varying signal-to-noise Ratio
-        values.\hl{WIP}}
-    \label{fig:noise-effect}
-\end{figure}
+    \begin{tikzpicture} \node [anchor=south west] at (0,0) {
+            \includegraphics[width=.95\textwidth]{\subdir/noise-effect.png}
+        }; \node [anchor=south west, text width=.6\textwidth] at (0.5,0.5) {
+            \caption{Selected model evaluated on a
+                recording with added white noise with varying signal-to-noise Ratio
+                values.}
+            \label{fig:noise-effect}
+        }; \end{tikzpicture}
+\end{figure*}
 
 \subsection{Computational cost} Tests with the selected model on a CPU show that
 the time to compute the feature extraction is a 40\% of the total time to
@@ -72,24 +77,30 @@ evaluation that the vulnerabilities of audio-based odometry and visual-based
 odometry do not overlap. Which makes Acoustic Odometry more accurate in certain
 scenarios where the visual odometry vulnerabilities are exploited.
 
-\begin{figure}
+\begin{figure*}
     \centering
-    \includegraphics[width=\linewidth]{\subdir/other-methods.png}
-    \caption{Selected model evaluated
-        evaluated against Visual SLAM (based on visual odometry) and wheel
-        odometry.}
-    \label{fig:other-methods}
-\end{figure}
+    \begin{tikzpicture} \node [anchor=south west] at (0,0) {
+            \includegraphics[width=\textwidth]{\subdir/other-methods.png}
+        }; \node [anchor=south west, text width=.6\textwidth] at (0.5,0.5) {
+            \caption{Selected model evaluated
+                evaluated against Visual SLAM (based on visual odometry) and wheel
+                odometry.}
+            \label{fig:other-methods}
+        }; \end{tikzpicture}
+\end{figure*}
 
-\begin{figure}
+\begin{figure*}
     \centering
-    \includegraphics[width=\linewidth]{\subdir/VO-challenge.png}
-    \caption{
-        Selected model evaluated against Visual SLAM (based on visual odometry)
-        in a scenario where visual odometry vulnerabilities are exploited:
-        Dynamic objects are moved in the camera field of view and lightning
-        conditions are changed during the recording.}
-    \label{fig:VO-challenge}
-\end{figure}
+    \begin{tikzpicture} \node [anchor=south west] at (0,0) {
+            \includegraphics[width=\textwidth]{\subdir/VO-challenge.png}
+        }; \node [anchor=south west, text width=.6\textwidth] at (0.5,0.5) {
+            \caption{
+                Selected model evaluated against Visual SLAM (based on visual odometry)
+                in a scenario where visual odometry vulnerabilities are exploited:
+                Dynamic objects are moved in the camera field of view and lightning
+                conditions are changed during the recording.}
+            \label{fig:VO-challenge}
+        }; \end{tikzpicture}
+\end{figure*}
 
 \include*{\subdir/discussion}

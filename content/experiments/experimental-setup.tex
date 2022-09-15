@@ -1,23 +1,15 @@
 \subsection{Experimental Setup} \label{subsec:experimental-setup}
 
 This work uses a single wheel testbed, composed of a carriage unit attached to
-a frame over a soil bin, as it can be seen in \cref{fig:single-wheel-testbed}.
-It is 3500 mm in length, 600 mm in width, and 1200 mm in height. The soil bin
-is filled with sandy soil with a depth of 200 mm. The surface of the sand can
-be leveled or sloped before each test run using the leveling apparatus attached
-to the sandbox.
-
-\begin{figure}
-    \centering
-    \input{\subdir/singlewheeltestbed.tkiz}
-    \caption{Single wheel testbed}
-    \label{fig:single-wheel-testbed}
-\end{figure}
+a frame over a soil bin. It is 3500 mm in length, 600 mm in width, and 1200 mm
+in height. The soil bin is filled with sandy soil with a depth of 200 mm. The
+surface of the sand can be leveled or sloped before each test run using a
+leveling apparatus attached to the sandbox.
 
 The carriage unit can move in the longitudinal direction at an arbitrary
 velocity using the ball screw while the unit freely moves in its vertical
 direction. The wheel is placed at the bottom of the carriage wheel with an
-independent traction motor. Therefore this testbed can produce an arbitrary
+independent traction motor. Therefore, this testbed can produce an arbitrary
 slip ratio by varying the angular speed of the wheel and the longitudinal
 velocity of the unit. 
 
@@ -28,13 +20,10 @@ slip ratio is bounded in the range $\left(-1,1\right]$, where negative values
 correspond to wheel \emph{skidding}.
 
 \begin{equation}
-    \begin{split}
-    s & = \begin{cases} 
+    s  = \begin{cases} 
         1 - \frac{V_x}{r V_\omega} & (r V_\omega \geq V_x, 0 \leq s \leq 1) \\
         \frac{r V_\omega}{V_x} - 1 & (r V_\omega < V_x, -1 \leq s < 0)
-    \end{cases} \\
-    & = \frac{r V_\omega - V_x}{\max(r V_\omega, V_x)}
-    \end{split}
+    \end{cases}
     \label{eq:slip-ratio}
 \end{equation}
 

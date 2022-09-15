@@ -1,4 +1,4 @@
-\subsection{Prediction Model} \label{sec:prediction-model}
+\subsection{Prediction Model} \label{subsec:prediction-model}
 
 Consecutive feature frames from the \nameref{subsec:feature-extraction} module
 are concatenated in order to form a \emph{segment}. This segment is then fed to
@@ -12,51 +12,48 @@ shown in \cref{fig:model-arch-cnn}.
 \begin{figure}
     \centering
     \includegraphics[width=\linewidth]{\subdir/CNN.drawio.png}
-    \caption{Convolutional Neural Network
-        \nameref{subsec:model-architecture} used in this work. Different layer
-        sizes are used as well as different input segment dimensions. The
-        output of the last fully connected layer changes with the model
-        \nameref{subsec:model-task} too.}
+    \caption{Convolutional Neural Network architecture used in this work.}
     \label{fig:model-arch-cnn}
 \end{figure}
 
-The input dimensions depend on the \nameref{subsec:feature-extraction}
-parameters, namely number of features per frame, number of extractors and
-number of frames per segment. Different layer sizes are evaluated as well,
-defined in \cref{table:model-arch-sizes}. The output of the last fully
-connected layer depends on the \nameref{subsec:model-task}.
 
-\subsubsection{Task} \label{subsec:model-task}
+% The input dimensions depend on the \nameref{subsec:feature-extraction}
+% parameters, namely number of features per frame, number of extractors and
+% number of frames per segment. Different layer sizes are evaluated as well,
+% defined in \cref{table:model-arch-sizes}. The output of the last fully
+% connected layer depends on the \nameref{subsec:model-task}.
 
-One can find here a description of the different tasks implemented and tested
-in models. Tasks define the goal of the model and the way its loss is computed.
+% \subsubsection{Task} \label{subsec:model-task}
 
-\paragraph{Classification} \label{para:model-task-class} Consists in
-classifying the longitudinal velocity given a set of possibilities. The
-different classes are ranges of longitudinal velocities, being these ranges a
-hyperparameter of the model. Cross entropy loss is computed between the
-predicted class probabilities and the class corresponding to the target
-longitudinal velocity and the predicted class. The output of the model is
-therefore a vector of probabilities corresponding to each class.
+% One can find here a description of the different tasks implemented and tested
+% in models. Tasks define the goal of the model and the way its loss is computed.
 
-\paragraph{Ordinal classification} \label{para:model-task-ord-class} Consists
-in classifying the longitudinal velocity given a set of possibilities like in
-\nameref{para:model-task-class}, with different classes being ranges of
-longitudinal velocities. But the order of the class matters. This method was
-introduced in \cite{ordclass2006}, where standard classification algorithms are
-extended to make use of the order of the classes. The output of this model is a
-vector of binary values that can be decoded into a class position by making use
-of a ranking rule. The loss is computed with the mean square error between the
-target class position and the predicted class position. 
+% \paragraph{Classification} \label{para:model-task-class} Consists in
+% classifying the longitudinal velocity given a set of possibilities. The
+% different classes are ranges of longitudinal velocities, being these ranges a
+% hyperparameter of the model. Cross entropy loss is computed between the
+% predicted class probabilities and the class corresponding to the target
+% longitudinal velocity and the predicted class. The output of the model is
+% therefore a vector of probabilities corresponding to each class.
 
-\subsubsection{Architecture} \label{subsec:model-architecture}
+% \paragraph{Ordinal classification} \label{para:model-task-ord-class} Consists
+% in classifying the longitudinal velocity given a set of possibilities like in
+% \nameref{para:model-task-class}, with different classes being ranges of
+% longitudinal velocities. But the order of the class matters. This method was
+% introduced in \cite{ordclass2006}, where standard classification algorithms are
+% extended to make use of the order of the classes. The output of this model is a
+% vector of binary values that can be decoded into a class position by making use
+% of a ranking rule. The loss is computed with the mean square error between the
+% target class position and the predicted class position. 
 
-This section describes the different model architectures implemented and
-evaluated. A common point of them all is simplicity. It is out of the scope of
-this work to find an optimal architecture for acoustic odometry. But it is
-interesting to evaluate different simple options.
+% \subsubsection{Architecture} \label{subsec:model-architecture}
 
-\paragraph{CNN with normalized input} \label{para:model-arch-norm-cnn} This
-architecture is identical to the \nameref{para:model-arch-cnn} except for the
-fact that it contains a batch normalization layer \cite{batchnorm2015} as shown
-in \cref{fig:model-arch-cnn}.
+% This section describes the different model architectures implemented and
+% evaluated. A common point of them all is simplicity. It is out of the scope of
+% this work to find an optimal architecture for acoustic odometry. But it is
+% interesting to evaluate different simple options.
+
+% \paragraph{CNN with normalized input} \label{para:model-arch-norm-cnn} This
+% architecture is identical to the \nameref{para:model-arch-cnn} except for the
+% fact that it contains a batch normalization layer \cite{batchnorm2015} as shown
+% in \cref{fig:model-arch-cnn}.

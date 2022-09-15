@@ -7,20 +7,20 @@ loose sandy terrain. As this scenario can be easily reproduced with the
 available \nameref{subsec:experimental-setup}, making it possible
 to gather a whole new \nameref{subsec:datasets}. Experiments are conducted
 varying the different tuneable parameters in the
-\nameref{subsec:feature-extraction} module and \nameref{sec:prediction-model}
+\nameref{subsec:feature-extraction} module and \nameref{subsec:prediction-model}
 and a model is selected based on its performance and computational cost.
 
 \include*{\subdir/experimental-setup}
 
 \subsection{Datasets} \label{subsec:datasets}
 
-\subsubsection{Training}
-used to train and validate the \nameref{sec:prediction-model}. This work
+\subsubsection{Training} \label{subsubsec:training-dataset}
+used to train and validate the \nameref{subsec:prediction-model}. This work
 defines it as a collection of annotated overlapping segments.
 
 The annotated variables are the longitudinal velocity $V_x$, the wheel angular
 speed $V_\omega$ and the slip ratio $s$. However, as it has been explained in
-\cref{sec:prediction-model}, these segments are relatively large in terms of
+\cref{subsec:prediction-model}, these segments are relatively large in terms of
 time. In a way that the measured variables can oscillate significantly during
 the segment. This work annotates the segments with a weighted average of the
 measurements within its duration.
@@ -75,19 +75,22 @@ The collected segments are artificially augmented using two methods: Add a
 random gain in the range [-10, 10]; Add white noise with a random
 signal-to-noise ratio in the range [0, 1] in the decibel scale.
 
-\subsubsection{Evaluation}
+\subsubsection{Evaluation} \label{subsubsec:evaluatio-dataset}
 used to evaluate the performance of the system under more realistic and
-challenging conditions unseen during training. 
+challenging conditions unseen during training like high slippage induced by an
+external force. Composed of 7 recordings with a total duration of 17 minutes.
 
-\subsection{Selected model} \label{sec:selected-model} 
+\subsection{Selected model} \label{subsec:selected-model} 
 
 This work selects a model trained on a dataset of segments of 50 frames, each
-of them spans over 15 ms and has 64 features from a single
+of them spans over 15 milliseconds and has 64 features from a single
 \nameref{subsubsec:gammatone-filterbank} extractor. The extractor is applied on
 the average of the audio signal channels with a frequency range of [50, 80000]
-Hz and features on te Bel scale. Training data from all available recordings is
-selected using the \texttt{with-laptop} strategy split described in
-\cref{table:training-data-split}, a \nameref{para:model-task-ord-class} task
-with 28 different linearly distributed longitudinal velocity ranges and a
-\nameref{para:model-arch-norm-cnn} architecture with a small size described as
-\texttt{S} in \cref{table:model-arch-sizes}. 
+Hz and features are represented on the Bel scale. The model is trained with
+data from all available recordings but only devices 3, 4, 6 and 8 as listed in
+\cref{table:wheeltestbed-setup-2-devices}. Training data is augmented with
+added random SNR noise. The model task is to classify the longitudinal velocity
+given a set of 28 different linearly distributed longitudinal velocity ranges
+taking into account the order of the classes, ordinal classification, as
+introduced in \cite{ordclass2006}. The selected model makes use of a batch
+normalization layer and has a size of 51.5MB. 
