@@ -1,0 +1,33 @@
+\begin{tikzpicture}[
+        latex-,very thick,green,text=black,fill=green
+    ]
+
+    % Include the image in a node
+    \node [above right,inner sep=0] (image) at (0,0) {
+        \includegraphics[width=.95\textwidth]{
+            \currfiledir/wheeltestbed-setup-back.jpg
+        }
+    };
+
+    % Create scope with normalized axes
+    \begin{scope}[
+            x={($0.1*(image.south east)$)},
+            y={($0.1*(image.north west)$)}]
+
+        % Draw grid grid for placement, comment out to disable
+        % \draw[lightgray,step=1] (image.south west) grid (image.north east);
+        % \foreach \x in {0,1,...,10} { \node [below] at (\x,0) {\x}; }
+        % \foreach \y in {0,1,...,10} { \node [left] at (0,\y) {\y};}
+
+        % 1 Realsense
+        % 2 VideoMicNTG front
+        % 3 VideoMicNTG back
+        \draw (2.5,2.5) node[above right, fill=green]{\small 3}
+            rectangle (4.5,6);
+        % 4 SmartLav wheel
+        % 5 SmartLav top
+        \draw (7.5,6) node[below right, fill=green]{\small 5}
+            rectangle (8.2,7);
+    \end{scope}
+
+\end{tikzpicture}

@@ -1,33 +1,9 @@
-\section{Results} \label{chap:results}
-
-This evaluation is computed using recordings never available as training data.
-The training pipeline is deterministic, meaning that all randomly generated
-numbers follow the same seed unless otherwise specified. Nevertheless, when the
-frame duration or the segment length is changed, the produced datasets have a
-different number of samples. Comparing the performance of models trained using
-datasets with different sizes can lead to wrong conclusions.
-
-
-\subsection{Metrics} \label{sec:metrics} This work measures the performance of
-the trained models using commonly used odometry and simultaneous localization
-and mapping metrics: \cite{Measuring2019}.
-
-\subsection{Selected model} \label{sec:selected-model}
-
-After the experiments listed in \cref{sec:results-experiments} this work
-selects a model trained on a dataset of segments of 50 frames, each of them
-spans over 15 ms and has 64 features from a single
-\nameref{para:gammatone-filterbank} extractor. The extractor is applied on
-the average of the audio signal channels with a frequency range of [50, 80000]
-Hz and features on te Bel scale. Training data from all available recordings is
-selected using the \texttt{with-laptop} strategy split described in
-\cref{table:training-data-split}, a \nameref{para:model-task-ord-class} task
-with 28 different linearly distributed longitudinal velocity ranges and a
-\nameref{para:model-arch-norm-cnn} architecture with a small size described as
-\texttt{S} in \cref{table:model-arch-sizes}. 
+\section{Results} \label{sec:results}
 
 \Cref{table:results-selected-model} shows the average performance of the
-selected model across all seven evaluation recordings and devices.
+selected model across all seven evaluation recordings and devices. Performance
+is measured with commonly used odometry and simultaneous localization and
+mapping metrics as described in \cite{Measuring2019}. \hl{Additionally APE}
 \Cref{fig:high-slip} shows the its results on an evaluation recording
 characterized by high slippage driving conditions using two different devices.
 
@@ -41,26 +17,25 @@ characterized by high slippage driving conditions using two different devices.
     \end{tabular}
     \caption[Selected model average performance across evaluation recordings
         and devices]{Selected model average performance across all evaluation
-        recordings and all devices. \nameref{para:ATE} is computed between
-        frames with a duration of 15 ms and \nameref{para:RPE} is computed
-        using time windows 1s long.}
+        recordings and all devices. Average Trajectory Error (ATE) is computed
+        between frames with a duration of 15 ms and Relative Pose Error (RPE)
+        is computed using time windows 1s long.}
     \label{table:results-selected-model}
 \end{table}
 
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.95\textwidth]{\subdir/high-slip.png}
+    \includegraphics[width=0.95\linewidth]{\subdir/high-slip.png}
     \caption[Selected model on high slippage conditions]{Selected model
         evaluated on a recording characterized by high slippage conditions
-        using two different devices.}
+        using two different devices.\hl{WIP}}
     \label{fig:high-slip}
 \end{figure}
 
-\paragraph{Noise} One can see in \cref{fig:noise-effect} the behavior of the
+\subsection{Noise} One can see in \cref{fig:noise-effect} the behavior of the
 selected model against white noise. Generally, white noise increases the value
-of the estimated motion. Very small values of signal-to-noise ratio (-20 dB,
-which is a noise power 100 times higher than the signal) impede the model to
+of the estimated motion. Signal-to-Noise ratios of -20 dB impede the model to
 recognize situations where the wheel is not moving.
 
 \begin{figure}
@@ -68,11 +43,11 @@ recognize situations where the wheel is not moving.
     \includegraphics[width=\linewidth]{\subdir/noise-effect.png}
     \caption[Selected model with white noise]{Selected model evaluated on a
         recording with added white noise with varying signal-to-noise Ratio
-        values.}
+        values.\hl{WIP}}
     \label{fig:noise-effect}
 \end{figure}
 
-\paragraph{Computational cost} Tests with the selected model on a CPU show that
+\subsection{Computational cost} Tests with the selected model on a CPU show that
 the time to compute the feature extraction is a 40\% of the total time to
 process a new frame, which is 2.03 ms on an Intel\textregistered{}
 Core\texttrademark{} i7-9750H CPU at 2.60GHz. The prediction time takes up a
@@ -82,7 +57,7 @@ this particular hardware. Using hardware acceleration with CUDA the total time
 to process a new frame is slightly lower: 1.93 ms on a NVIDIA GeForce RTX
 2060 GPU.
 
-\paragraph{Compared with other models} The selected model is evaluated against
+\subsection{Compared with other models} The selected model is evaluated against
 two other odometry methods: Wheel odometry computed from the ground truth wheel
 angular speed; Visual SLAM using Intel\textregistered{}
 RealSense\texttrademark{} Tracking Camera T265, which is based on visual
@@ -100,7 +75,7 @@ scenarios where the visual odometry vulnerabilities are exploited.
 \begin{figure}
     \centering
     \includegraphics[width=\linewidth]{\subdir/other-methods.png}
-    \caption[Selected model compared to other methods]{Selected model evaluated
+    \caption{Selected model evaluated
         evaluated against Visual SLAM (based on visual odometry) and wheel
         odometry.}
     \label{fig:other-methods}
@@ -109,7 +84,7 @@ scenarios where the visual odometry vulnerabilities are exploited.
 \begin{figure}
     \centering
     \includegraphics[width=\linewidth]{\subdir/VO-challenge.png}
-    \caption[Selected model on a challenging scenario for Visual Odometry]{
+    \caption{
         Selected model evaluated against Visual SLAM (based on visual odometry)
         in a scenario where visual odometry vulnerabilities are exploited:
         Dynamic objects are moved in the camera field of view and lightning

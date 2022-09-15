@@ -5,38 +5,21 @@ data with a computationally inexpensive system. Many future ground mobile
 robots will be equipped with audio sensors for human-robot interaction
 purposes. In that context, robot ego-noise is just noise. Being able to
 estimate motion using byproduct data from the human-robot interaction system
-can add robustness to the localization system without significantly altering
-the hardware cost with additional sensors.
+can add robustness to the localization system without incurring in significant
+costs.
 
-In this thesis, we propose a system that can estimate the longitudinal velocity
-of a wheeled robot on loose sandy terrain using gammatone-based features
-extracted from robot ego-noise data and an ordinal classification model
-implemented as a convolutional neural network. Said system has been trained and
-evaluated in a new multi-modal dataset collected using a single wheel testbed
-and several microphones and cameras. The evaluation contains high wheel
-slippage scenarios where the proposed system successfully identifies when the
-wheel slips. The proposed model is also evaluated in the presence of white
-noise and demonstrates that it still can successfully predict longitudinal
-velocities in the presence of high noise power. Moreover, the system is
-compared against wheel odometry and a commercially available visual
-simultaneous localization and mapping system satisfactorily.
-
-This work shows that performance does not change significantly with model size.
-This indicates that there is still plenty of room for improvement in terms of
-model architecture: One one side, machine learning may not even be needed, a
-simpler algorithm may be used with sufficient accuracy and lower computational
-cost. On the other side, the fact that the behavior of the selected model
-changes significantly between devices indicates that fine-tuning \cite{TL2016}
-a model with the device where it will be deployed might significantly increase
-its performance. Similarly, using wheel odometry to estimate the wheel angular
-speed while using the proposed system to identify the wheel slippage may
-improve the performance as well.
-
-From the model point of view, this work only evaluates the performance of a
-shallow convolutional neural network with different layer sizes. But other
-architectures be more suitable for the task. Specially transformers
-\cite{vaswani2017attention} which have been used in speech recognition
-\cite{kim2022squeezeformer} and visual odometry tasks \cite{li2020transformer}.
+The proposed system is capable of estimating the longitudinal velocity of a
+wheeled robot on loose sandy terrain using gammatone-based features extracted
+from robot ego-noise data and an ordinal classification model implemented as a
+convolutional neural network. Said system has been trained and evaluated in a
+new multi-modal dataset collected using a single wheel testbed and several
+microphones and cameras. The evaluation contains high wheel slippage scenarios
+where the proposed system successfully identifies when the wheel slips. The
+proposed model is also evaluated in the presence of white noise and
+demonstrates that it still can successfully predict longitudinal velocities in
+the presence of high noise power. Moreover, the system is compared against
+wheel odometry and a commercially available visual simultaneous localization
+and mapping system satisfactorily.
 
 Finally, in recent years, single-robot simultaneous localization and mapping
 research is steadily moving toward systems that can build metric-semantic maps.
@@ -46,3 +29,14 @@ simultaneous localization and mapping system. Similarly, a system that not only
 estimates motion based on ego-noise but also is able to identify and subtract
 said ego-noise from the audio signal would be useful to improve the performance
 of speech recognition in collaborative ground robots. 
+
+% This work shows that performance does not change significantly with model size.
+% This indicates that there is still plenty of room for improvement in terms of
+% model architecture: One one side, machine learning may not even be needed, a
+% simpler algorithm may be used with sufficient accuracy and lower computational
+% cost. On the other side, the fact that the behavior of the selected model
+% changes significantly between devices indicates that fine-tuning \cite{TL2016}
+% a model with the device where it will be deployed might significantly increase
+% its performance. Similarly, using wheel odometry to estimate the wheel angular
+% speed while using the proposed system to identify the wheel slippage may
+% improve the performance as well.

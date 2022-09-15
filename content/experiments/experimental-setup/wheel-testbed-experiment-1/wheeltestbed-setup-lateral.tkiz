@@ -1,0 +1,33 @@
+\begin{tikzpicture}[
+        latex-,very thick,green,text=black,fill=green
+    ]
+
+    % Include the image in a node
+    \node [above right,inner sep=0] (image) at (0,0) {
+        \includegraphics[width=.95\textwidth]{
+            \currfiledir/wheeltestbed-setup-lateral.jpg
+        }
+    };
+
+    % Create scope with normalized axes
+    \begin{scope}[
+            x={($0.05*(image.south east)$)},
+            y={($0.1*(image.north west)$)}
+        ]
+
+        % Draw grid grid for placement, comment out to disable
+        % \draw[lightgray,step=1] (image.south west) grid (image.north east);
+        % \foreach \x in {0,1,...,20} { \node [below] at (\x,0) {\x}; }
+        % \foreach \y in {0,1,...,10} { \node [left] at (0,\y) {\y};}
+
+
+        % Labels
+        \draw (1,4) -- ++ (1.5,-2) node[fill=white,align=center]{ \small
+            Testbed\\Workstation };
+
+        \draw (8,9) -- ++ (1,0) node[right,fill=white]{
+            \small Sensor Workstation
+        };
+    \end{scope}
+
+\end{tikzpicture}

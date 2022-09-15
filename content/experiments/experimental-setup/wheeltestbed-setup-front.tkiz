@@ -1,0 +1,39 @@
+\begin{tikzpicture}[
+        latex-,very thick,green,text=black,fill=green
+    ]
+
+    % Include the image in a node
+    \node [above right,inner sep=0] (image) at (0,0) {
+        \includegraphics[origin=c,width=.95\textwidth]{
+            \currfiledir/wheeltestbed-setup-front.jpg
+        }
+    };
+
+    % Create scope with normalized axes
+    \begin{scope}[
+            x={($0.1*(image.south east)$)},
+            y={($0.1*(image.north west)$)}]
+
+        % Draw grid grid for placement, comment out to disable
+        % \draw[lightgray,step=1] (image.south west) grid (image.north east);
+        % \foreach \x in {0,1,...,10} { \node [below] at (\x,0) {\x}; }
+        % \foreach \y in {0,1,...,10} { \node [left] at (0,\y) {\y};}
+
+        % 1 Realsense D435i
+        \draw (1,5) rectangle (4,7) 
+            node[below left, fill=green]{\small 1};
+        % 2 Realsense T265
+        \draw (0.5,7.5) rectangle (4,9.5) 
+            node[below left, fill=green]{\small 2};
+        % 3 VideoMicNTG front
+        \draw (1.5,2) node[above right, fill=green]{\small 3} rectangle (5,4);
+        % 4 VideoMicNTG back
+        % 5 VideoMicNTG top
+        % 6 SmartLav wheel
+        \draw (6.1,3.5) node[below right, fill=green]{\small 6}
+            rectangle (6.9,4.5);
+        % 7 SmartLav top
+        % 8 Laptop microphone array
+    \end{scope}
+
+\end{tikzpicture}
