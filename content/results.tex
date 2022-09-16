@@ -27,7 +27,7 @@ two different devices.
 \begin{figure*}
     \centering
     \begin{tikzpicture} \node [anchor=south west] at (0,0) {
-            \includegraphics[width=\textwidth]{\subdir/high-slip.png}
+            \includegraphics[width=.95\textwidth]{\subdir/high-slip.png}
         }; \node [anchor=south west, text width=.6\textwidth] at (0.5,0.5) {
             \caption{Selected model evaluated on a recording characterized by high
                 slippage conditions using two different devices.}
@@ -44,7 +44,7 @@ recognize situations where the wheel is not moving.
     \centering
     \begin{tikzpicture} \node [anchor=south west] at (0,0) {
             \includegraphics[width=.95\textwidth]{\subdir/noise-effect.png}
-        }; \node [anchor=south west, text width=.6\textwidth] at (0.5,0.5) {
+        }; \node [anchor=south west, text width=.6\textwidth] at (0.5,0.2) {
             \caption{Selected model evaluated on a
                 recording with added white noise with varying signal-to-noise Ratio
                 values.}
@@ -52,35 +52,35 @@ recognize situations where the wheel is not moving.
         }; \end{tikzpicture}
 \end{figure*}
 
-\subsection{Computational cost} Tests with the selected model on a CPU show that
-the time to compute the feature extraction is a 40\% of the total time to
+\subsection{Computational cost} Tests with the selected model on a CPU show
+that the time to compute the feature extraction is a 40\% of the total time to
 process a new frame, which is 2.03 ms on an Intel\textregistered{}
 Core\texttrademark{} i7-9750H CPU at 2.60GHz. The prediction time takes up a
 55\% of the total time while the remaining 5\% corresponds to loading the new
-frame into memory The system is able to run 7.5 times faster than real time on
+frame into memory. The system is able to run 7.5 times faster than real time on
 this particular hardware. Using hardware acceleration with CUDA the total time
-to process a new frame is slightly lower: 1.93 ms on a NVIDIA GeForce RTX
-2060 GPU.
+to process a new frame is slightly lower: 1.93 ms on a NVIDIA GeForce RTX 2060
+GPU.
 
 \subsection{Compared with other models} The selected model is evaluated against
 two other odometry methods: Wheel odometry computed from the ground truth wheel
-angular speed; Visual SLAM using Intel\textregistered{}
+angular speed; and Visual SLAM using Intel\textregistered{}
 RealSense\texttrademark{} Tracking Camera T265, which is based on visual
-odometry. \Cref{fig:other-methods} is the evaluation in an undisturbed scenario
-for all methods, no acoustic noise and no lightning changes or dynamic objects.
-It shows that the selected model can perform with an accuracy comparable to
-state-of-the-art commercial visual-based methods in this simplified scenario.
-\Cref{fig:VO-challenge} instead corresponds to a scenario that is challenging
-for visual odometry. Dynamic objects are moved in the camera field of view and
-lightning conditions are changed during the recording. One can see in this
-evaluation that the vulnerabilities of audio-based odometry and visual-based
-odometry do not overlap. Which makes Acoustic Odometry more accurate in certain
-scenarios where the visual odometry vulnerabilities are exploited.
+odometry. \Cref{fig:other-methods} is the evaluation in an ideal scenario for
+all methods. It shows that the selected model can perform with an accuracy
+comparable to state-of-the-art commercial visual-based methods in this
+simplified scenario. \Cref{fig:VO-challenge} instead corresponds to a scenario
+that is challenging for visual odometry. Dynamic objects are moved in the
+camera field of view and lightning conditions are changed during the recording.
+One can see in this evaluation that the vulnerabilities of audio-based odometry
+and visual-based odometry do not overlap. Which makes Acoustic Odometry more
+accurate in certain scenarios where the visual odometry vulnerabilities are
+exploited.
 
 \begin{figure*}
     \centering
     \begin{tikzpicture} \node [anchor=south west] at (0,0) {
-            \includegraphics[width=\textwidth]{\subdir/other-methods.png}
+            \includegraphics[width=.95\textwidth]{\subdir/other-methods.png}
         }; \node [anchor=south west, text width=.6\textwidth] at (0.5,0.5) {
             \caption{Selected model evaluated
                 evaluated against Visual SLAM (based on visual odometry) and wheel
@@ -92,8 +92,8 @@ scenarios where the visual odometry vulnerabilities are exploited.
 \begin{figure*}
     \centering
     \begin{tikzpicture} \node [anchor=south west] at (0,0) {
-            \includegraphics[width=\textwidth]{\subdir/VO-challenge.png}
-        }; \node [anchor=south west, text width=.6\textwidth] at (0.5,0.5) {
+            \includegraphics[width=.95\textwidth]{\subdir/VO-challenge.png}
+        }; \node [anchor=south west, text width=.6\textwidth] at (0.5,0.1) {
             \caption{
                 Selected model evaluated against Visual SLAM (based on visual odometry)
                 in a scenario where visual odometry vulnerabilities are exploited:

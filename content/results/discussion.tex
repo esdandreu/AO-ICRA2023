@@ -25,12 +25,13 @@ power ratio.
 Finally, this work can be compared with other odometry methods. On one hand,
 only \cite{marchegiani2018a} proposes an audio-based odometry method, claiming
 an average absolute error of 0.065 m/s when predicting velocities, which is
-comparable to the average ATE 0.001m accumulated over the 66 15ms long audio
-frames contained in one second. But this work also shows an average RPE in a 1
-second window of 0.005m. This comparison should also be taken with a grain of
-salt as no common benchmarking data exists. Moreover, it remains unknown
-the performance of the proposed system on rotational movement and under the
-presence of multiple moving wheels.
+comparable to the average ATE 0.001 m accumulated over the 66 audio frames
+contained in one second of the proposed system. But the proposed system also
+shows an average RPE in a 1 second window of 0.005 m, which is significantly
+lower that the drift claimed by \citeauthor{marchegiani2018a}. This comparison
+should also be taken with a grain of salt as no common benchmarking data
+exists. Moreover, it remains unknown the performance of the proposed system on
+rotational movement and under the presence of multiple moving wheels.
 
 On the other hand, the method presented in \cite{Ojeda2006}, where wheel
 slippage is identified using the motor current and compensated in the wheel
