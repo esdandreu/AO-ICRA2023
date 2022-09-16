@@ -1,17 +1,19 @@
 \subsection{Discussion} \label{subsec:discussion}
 
+\balance
+
 The selected model behavior changes from one device to another. Devices that
 output an audio signal with a higher power tend to result in higher speed
-predictions, as can be seen in \cref{fig:high-slip}, while the overall
+predictions, as it can be seen in \cref{fig:high-slip}, while the overall
 predicted curve is very similar. Meaning that even if the absolute value of the
 predicted velocity is not accurate, the model is able to recognize slippage
 conditions across different devices. Even with devices not present during
 training, as is the case in \cref{fig:other-methods}, where none of the devices
 shown in the evaluation were present during training. This indicates that
-fine-tuning \cite{TL2016} a model with the device where it will be deployed
-might significantly increase its performance. Similarly, using wheel odometry
-to estimate the wheel angular speed while using the proposed system to identify
-the wheel slippage may improve the performance as well.
+fine-tuning \cite{TL2016} a model with might significantly increase its
+performance on a given device. Similarly, using wheel odometry to estimate the
+wheel angular speed while using the proposed system to identify the wheel
+slippage may improve the performance and generalization.
 
 White noise affects the performance of the proposed system, as could
 be expected. Nevertheless, a considerably large noise power compared to the
@@ -28,9 +30,9 @@ an average absolute error of 0.065 m/s when predicting velocities, which is
 comparable to the average ATE 0.001 m accumulated over the 66 audio frames
 contained in one second of the proposed system. But the proposed system also
 shows an average RPE in a 1 second window of 0.005 m, which is significantly
-lower that the drift claimed by \citeauthor{marchegiani2018a}. This comparison
-should also be taken with a grain of salt as no common benchmarking data
-exists. Moreover, it remains unknown the performance of the proposed system on
+lower that the drift claimed by \citeauthor{marchegiani2018a}. This comparison should
+also be taken with a grain of salt as no common benchmarking data exists.
+Moreover, it remains unknown the performance of the proposed system on
 rotational movement and under the presence of multiple moving wheels.
 
 On the other hand, the method presented in \cite{Ojeda2006}, where wheel
