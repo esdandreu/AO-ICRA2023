@@ -1,1 +1,17 @@
-This work paves the way towards inexpensive robust robot localization by proposing a system capable of estimating the longitudinal velocity of a wheeled robot on loose sandy terrain using only acoustic sensors. Which will be present anyway in many future ground mobile robots for human-robot interaction purposes. The proposed system consists of an audio feature extraction module, based on gammatone filterbanks, and a prediction module, based on a convolutional neural network. Experiments in a single wheel test bed with a wheel driving up to speeds of 0.07 m/s with a wide range of wheel slippage, show that the system is a feasible auxiliary source of odometry with an average drift of 5 mm/s. A qualitative evaluation of the proposed system against other sources of odometry shows that acoustic and visual methods vulnerabilities do not overlap, which indicates that their combination would enhance their robustness in unstructured environments. The system is able to make a prediction from a single audio frame with a duration of 15ms in only 2ms on a user-level commercially available CPU. Additional experiments with white Gaussian noise show that high noise power (Signal to Noise Ratio of -10 dB) only affects significantly the prediction of speeds close to 0ms.
+This work paves the way towards inexpensive robust robot localization by
+proposing a system capable of estimating the longitudinal velocity of a wheeled
+robot on loose sandy terrain using only acoustic sensors. These will likely be
+present anyway in many future ground mobile robots for human-robot interaction
+purposes. The proposed system consists of an audio feature extraction module,
+based on gammatone filterbanks, and a prediction module, based on a
+convolutional neural network. Experiments in a single wheel test bed with a
+wheel driving up to speeds of 0.07 m/s with a wide range of wheel slippage,
+show that the system is a feasible auxiliary source of odometry with an average
+drift of 5 mm/s. A qualitative evaluation of the proposed system against other
+sources of odometry shows that acoustic and visual methods vulnerabilities do
+not overlap, which indicates that their combination would enhance their
+robustness in unstructured environments. The system is able to make a
+prediction from a single audio frame with a duration of 15ms in only 2ms on a
+user-level commercially available CPU. Additional experiments with white
+Gaussian noise show that high noise power (Signal to Noise Ratio of -10 dB)
+only affects significantly the prediction of speeds close to 0ms.
