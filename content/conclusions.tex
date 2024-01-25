@@ -1,8 +1,14 @@
 \section{Conclusions} \label{chap:conclusions}
 
+% Comments to author: The claim that the proposed method estimates robot
+% odometry is a bit exaggerated: it really assesses horizontal velocity in
+% order to correct wheel slippage.
+
+% TODO highlight that the problem is oversimplified
+
 This work demonstrates that it is feasible to estimate odometry from acoustic
 data with a computationally inexpensive system. Which can add robustness to the
-localization system without incurring in significant costs.
+localization system without incurring in significant costs. 
 
 The proposed system is capable of estimating the longitudinal velocity of a
 wheeled robot on loose sandy terrain using gammatone-based features extracted
@@ -13,9 +19,38 @@ microphones and cameras. The evaluation contains high wheel slippage scenarios
 where the proposed system successfully identifies when the wheel slips. The
 proposed model is also evaluated in the presence of white noise and
 demonstrates that it still can successfully predict longitudinal velocities in
-the presence of high noise power. Moreover, the system is compared against
+the presence of high noise power. 
+
+% TODO Discussion?
+% However, claiming that the proposed method estimates robot odometry in its
+% current form would be an exaggeration. The experiments presented in this paper
+% correspond to an oversimplified scenario for a number of reasons:
+
+% - The one-dimensional scenario can be seen as a simple slip ratio estimation
+% problem. 2D pose estimation including orientation must be taken into account
+% for Acoustic Odometry to bring value to the real wheeled robot location
+% problem.
+
+% - The maximum speed considered of 0.07 m/s is too slow to represent many real
+% mobile robot systems.
+
+% - Only one terrain condition has been taken into account.
+
+% Nevertheless
+
+Moreover, the system is compared against
 wheel odometry and a commercially available visual simultaneous localization
 and mapping system satisfactorily.
+
+% TODO Review 33: You should always state quantitatively the
+% performance of your method against state-of-the-art. You state at the end of
+% your concluding statement that your method performance satisfactorily then
+% what research question were you trying to answer in this paper?
+
+% Comments to author: The experiments do not take into account sufficiently
+% realistic scenarios (e.g. too slow speed, not unstructured environment) and
+% do not compare with real state-of-the-art techniques (Intel RealSense system
+% is not visual SLAM system)
 
 % Finally, in recent years, single-robot simultaneous localization and mapping
 % research is steadily moving toward systems that can build metric-semantic maps.

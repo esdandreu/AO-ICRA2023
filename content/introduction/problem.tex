@@ -1,11 +1,5 @@
 \subsection{Problem} \label{subsec:problem}
 
-% In an unstructured environment, the robot has no prior knowledge about it and
-% has to rely on its sensory and navigation systems to operate autonomously.
-% Hence the problem of robot localization is defined as the process of
-% determining where a mobile robot is located in its environment
-% \cite{Localization2016}. 
-
 Self-localization is one of the most fundamental competencies required by an
 autonomous robot as the knowledge of its location is an essential precursor to
 making decisions about future actions.
@@ -23,9 +17,10 @@ changes that motion induces on the images of its onboard cameras
 \cite{ScaramuzzaTutorial}. Similarly, laser odometry estimates the ego-motion
 of a vehicle by scan-matching of consecutive laser scans. Unlike wheel
 odometry, both visual odometry and laser odometry, are not affected by wheel
-slip. They have their drawbacks: visual odometry suffers from poor illumination
-and low textured environments; laser might struggle in degenerated scenes where
-planar areas are prevalent; both are sensitive to dynamic environments.
+slip, but they have other drawbacks: visual odometry suffers from poor
+illumination and low textured environments; laser might struggle in degenerated
+scenes where planar areas are prevalent; both are sensitive to dynamic
+environments.
 
 Research that improves the robustness of robot localization can be divided into
 two trends: To fuse information from different sensors to overcome their

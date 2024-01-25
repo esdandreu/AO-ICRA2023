@@ -15,6 +15,12 @@ performance on a given device. Similarly, using wheel odometry to estimate the
 wheel angular speed while using the proposed system to identify the wheel
 slippage may improve the performance and generalization.
 
+% TODO Review33: In Discussion section, the authors state "White noise affects
+% the performance of the proposed system as could be expected." I fail to
+% understand this. Do the author means that white noise will affect the
+% performance of the CNN classifier or the Gammatone filter for feature
+% extraction. This need to be discussed.
+
 White noise affects the performance of the proposed system, as could
 be expected. Nevertheless, a considerably large noise power compared to the
 signal power does not make the selected model unusable. As it can be seen in
@@ -24,12 +30,20 @@ speeds close to 0ms. This indicates that white noise only significantly affects
 the prediction of speeds under a threshold determined by the signal-to-noise
 power ratio.
 
+% TODO Review35: Another vital scenario to consider is when multiple powered
+% wheels are operating simultaneously. Robots usually have multiple powered
+% revolutions, and it would be good to know the capability of this sensing
+% system in the presence of correlated interfering sources.
+
 Finally, this work can be compared with other odometry methods. On one hand,
 only \cite{marchegiani2018a} proposes an audio-based odometry method, claiming
 an average absolute error of 0.065 m/s when predicting velocities, which is
 comparable to the average ATE 0.001 m accumulated over the 66 audio frames
 contained in one second of the proposed system. But the proposed system also
 shows an average RPE in a 1 second window of 0.005 m, which is significantly
+% TODO Review 33: Under Discussion section paragraph 3, please use the IEEE
+% format when citing. For example, instead of Marchegiani and Newman, state the
+% paper the authors have worked on.
 lower that the drift claimed by \citeauthor{marchegiani2018a}. This comparison should
 also be taken with a grain of salt as no common benchmarking data exists.
 Moreover, it remains unknown the performance of the proposed system on

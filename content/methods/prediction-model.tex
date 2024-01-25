@@ -1,5 +1,7 @@
 \subsection{Prediction Model} \label{subsec:prediction-model}
 
+% TODO Why is there no theoretical analysis?
+
 Consecutive feature frames from the \nameref{subsec:feature-extraction} module
 are concatenated in order to form a \emph{segment}. This segment is then fed to
 the prediction model. Which will output a motion estimation.
@@ -8,6 +10,8 @@ This work proposes a shallow Convolutional Neural Network \cite{FukushimaCNN}
 composed by two convolution layers, each of them followed by a max pooling
 layer, and two fully connected layers, each of them preceded by a dropout, as
 shown in \cref{fig:model-arch-cnn}. 
+
+% TODO Highlight that dimensions will be varied and a final model is selected.
 
 \begin{figure}
     \centering

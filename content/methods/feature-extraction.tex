@@ -32,6 +32,11 @@ which largely determines the slope of the filter's skirts; and $b$ is the
 bandwidth of the filter and largely determines the duration of the impulse
 response; $a$ is the amplitude and $\phi$ is the phase.
 
+% TODO Review33: On page 3, equation 1, the authors do not discuss the sound
+% propagation model. Do the author assume that the sound propagation is
+% far-field or near-field. Does this effect the performance of the CNN
+% classifiers?
+
 \begin{equation}
     g(t, f_c) = a t^{n-1}e^{-2 \pi b t} \cos{2 \pi f_c t + \phi}
     \label{eq:gammatone-filter-impulse}
