@@ -1,7 +1,5 @@
 \subsection{Prediction Model} \label{subsec:prediction-model}
 
-% TODO Why is there no theoretical analysis?
-
 Consecutive feature frames from the \nameref{subsec:feature-extraction} module
 are concatenated in order to form a \emph{segment}. This segment is then fed to
 the prediction model. Which will output a motion estimation.
@@ -11,21 +9,28 @@ composed by two convolution layers, each of them followed by a max pooling
 layer, and two fully connected layers, each of them preceded by a dropout, as
 shown in \cref{fig:model-arch-cnn}. 
 
-% TODO Highlight that dimensions will be varied and a final model is selected.
 
 \begin{figure}
     \centering
     \includegraphics[width=\linewidth]{\subdir/CNN.drawio.png}
-    \caption{Convolutional Neural Network architecture used in this work.}
+    \caption{Shallow Convolutional Neural Network architecture proposed in this
+    work. The selected model is composed by: a batch normalization layer; a
+    first convolution layer with one input channel, a kernel size of 5 and 16
+    output channels; a second convolution layer with 32 output channels and a
+    kernel size of 2; a first fully connected layer with an output size of 256;
+    a second fully connected layer with an output size of 28. Each of the
+    convolution layers is followed by a maxpool layer with a kernel size of 2
+    and each of the fully connected layers is preceded by a dropout layer with
+    a probability of 50\%.}
     \label{fig:model-arch-cnn}
 \end{figure}
 
-
-% The input dimensions depend on the \nameref{subsec:feature-extraction}
-% parameters, namely number of features per frame, number of extractors and
-% number of frames per segment. Different layer sizes are evaluated as well,
-% defined in \cref{table:model-arch-sizes}. The output of the last fully
-% connected layer depends on the \nameref{subsec:model-task}.
+The input dimensions depend on the \nameref{subsec:feature-extraction}
+parameters, namely number of features per frame, number of extractors and
+number of frames per segment. Layer sizes and the output of the last fully
+connected layers are seen as tuneable parameters as well. Experiments are
+conducted with the different parameters and a model is selected based on its
+performance and computational cost.
 
 % \subsubsection{Task} \label{subsec:model-task}
 

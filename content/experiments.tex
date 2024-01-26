@@ -3,21 +3,19 @@
 Due to the difficulty in finding publicly available audio odometry datasets,
 the problem of robot localization is simplified to a single dimension over a
 unique terrain type: A wheel that can only move along a longitudinal axis over
-loose sandy terrain. As this scenario can be easily reproduced with the
-available \nameref{subsec:experimental-setup}, making it possible to gather a
-new \nameref{subsec:datasets}. 
+loose sandy terrain. This scenario can be easily reproduced with the available
+\nameref{subsec:experimental-setup}, making it possible to gather new
+\nameref{subsec:datasets}. 
 
 \include*{\subdir/experimental-setup}
 
 \subsection{Datasets} \label{subsec:datasets}
 
 \subsubsection{Training} \label{subsubsec:training-dataset} A collection of
-annotated overlapping audio frames used to train and test the
-\nameref{subsec:prediction-model}.
-
-The annotated variables are the longitudinal velocity $V_x$, the wheel angular
-speed $V_\omega$ and the slip ratio $s$. This work annotates the audio frames
-with a weighted average of the measurements within its duration.
+overlapping audio frames used to train and test the
+\nameref{subsec:prediction-model}. Audio frames are annotated with longitudinal
+velocity, the wheel angular speed and the slip ratio with a weighted average of
+the measurements within the frame duration.
 
 Audio frames are extracted from test recordings where the wheel test bed is
 used to control different variables as the slip ratio and the wheel angular
@@ -35,13 +33,10 @@ the shape of the terrain.
 
 \subsection{Selected model} \label{subsec:selected-model} 
 
-% TODO Model experiments
-Experiments are conducted varying the different tuneable parameters in the
-\nameref{subsec:feature-extraction} module and
-\nameref{subsec:prediction-model} and a model is selected based on its
-performance and computational cost.
-
-% TODO More info about the model. A table would be nice.
+% Review29 In methods, this paper shows very limited innovation in feature
+% extraction and prediction model. The design and implementation of the CNN is
+% unclear because the elaboration of Figure 3 is insufficient. The direct
+% output of the prediction model is also unclear.
 
 This work selects a model trained on a dataset of segments of 50 frames, each
 of them spans over 15 milliseconds and has 64 features from a single Gammatone
@@ -49,9 +44,11 @@ filterbank extractor. The extractor is applied on the average of the audio
 signal channels with a frequency range of [50, 8000] Hz and features are
 represented on the Bel scale. The model is trained with data from a subset of
 microphones (1, 2, 4 and 6 as shown in \cref{fig:wheeltestbed-setup-2}).
-Training data is augmented with added random SNR noise. The model task is to
-classify the longitudinal velocity given a set of 28 different linearly
-distributed longitudinal velocity ranges taking into account the order of the
-classes, ordinal classification, as introduced in \cite{ordclass2006}. The
-selected model makes use of a batch normalization layer and has a size of
-51.5MB. 
+Training data is augmented with added random SNR noise. The model classifies
+the longitudinal velocity given a set of 28 different linearly distributed
+longitudinal velocity ranges taking into account the order of the classes,
+ordinal classification, as introduced in \cite{ordclass2006}. Therefore the
+output of the model is a vector of probabilities that can be decoded into a
+class position by making use of a ranking rule. The loss is computed with the
+mean square error between the target class position and the predicted class
+position.

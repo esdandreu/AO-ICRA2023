@@ -1,11 +1,9 @@
 \section{Results} \label{sec:results}
 
 \Cref{table:results-selected-model} shows the average performance of the
-selected in the \nameref{subsubsec:evaluatio-dataset} dataset. Performance is
-measured with commonly used odometry and simultaneous localization and mapping
-metrics as described in \cite{Measuring2019}. \Cref{fig:high-slip} shows its
-results on an evaluation recording characterized by high slippage driving
-conditions.
+selected model in the \nameref{subsubsec:evaluatio-dataset} dataset.
+\Cref{fig:high-slip} shows its results on an evaluation recording characterized
+by high slippage driving conditions.
 
 \begin{table}
     \centering
@@ -29,14 +27,15 @@ conditions.
     \centering
     \begin{tikzpicture} \node [anchor=south west] at (0,0) {
             \includegraphics[width=.95\textwidth]{\subdir/high-slip.png}
-        }; \node [anchor=south west, text width=.65\textwidth] at (0,-0.5) {
+        }; \node [anchor=south west, text width=.65\textwidth] at (0,-1) {
             \caption{Evaluation of a recording characterized by high slippage
-            conditions. The left figure shows speed estimated using the
-            selected model (\emph{AO}) and the wheel test bed measurements of
-            wheel angular velocity (\emph{wheel odometry}) and position
-            (\emph{ground truth}). The integrated position is shown in the
-            center figure. The right figure shows the Relative Pose Error}
-            % TODO Review
+            conditions. The left figure shows longitudinal velocity estimated
+            using the selected model (\emph{AO}), the measured wheel angular
+            velocity (\emph{wheel odometry}) and position (\emph{ground
+            truth}). The integrated longitudinal position is shown in the
+            center figure. The right figure shows the evolution of the Relative
+            Pose Error \cite{Measuring2019} computed using time windows 1 s
+            long.}
             \label{fig:high-slip}
         }; \end{tikzpicture}
 \end{figure*}
@@ -74,15 +73,13 @@ to process a new frame is slightly lower: 1.93 ms on a NVIDIA GeForce RTX 2060
 GPU.
 
 \subsection{Compared with other models} The selected model is evaluated against
-two other odometry methods: Wheel odometry computed from the ground truth wheel
-angular speed; and Intel\textregistered{} RealSense\texttrademark{} Tracking
+two other odometry methods: Wheel odometry computed from the measured wheel
+angular velocity; and Intel\textregistered{} RealSense\texttrademark{} Tracking
 Camera T265, which is based on visual odometry. \Cref{fig:other-methods} is the
-evaluation in an ideal scenario for all methods. It shows that the selected
-model can perform with an accuracy comparable to commercial visual-based
-methods in this simplified scenario. \Cref{fig:VO-challenge} instead
-corresponds to a scenario that is challenging for visual odometry. Dynamic
-objects are moved in the camera field of view and lightning conditions are
-changed during the recording. One can see in this evaluation that the
+evaluation in an ideal scenario for all methods. \Cref{fig:VO-challenge}
+instead corresponds to a scenario that is challenging for visual odometry.
+Dynamic objects are moved in the camera field of view and lightning conditions
+are changed during the recording. One can see in this evaluation that the
 vulnerabilities of audio-based odometry and visual-based odometry do not
 overlap.
 
@@ -90,10 +87,13 @@ overlap.
     \centering
     \begin{tikzpicture} \node [anchor=south west] at (0,0) {
             \includegraphics[width=.95\textwidth]{\subdir/other-methods.png}
-        }; \node [anchor=south west, text width=.65\textwidth] at (0,0.5) {
+        }; \node [anchor=south west, text width=.65\textwidth] at (0,0) {
             \caption{Selected model evaluated evaluated against wheel odometry
             and Intel\textregistered{} RealSense\texttrademark{} Tracking
-            Camera T265 (based on visual odometry).}
+            Camera T265 (based on visual odometry). One can see in the central
+            figure that the proposed system can perform with an accuracy
+            comparable to commercially available visual-based systems in this
+            simplified scenario.}
             \label{fig:other-methods}
         }; \end{tikzpicture}
 \end{figure*}
