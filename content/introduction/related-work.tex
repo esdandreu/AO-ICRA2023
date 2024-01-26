@@ -2,15 +2,12 @@
 
 \nameref{para:audio-based-odometry} is a relatively unexplored field, but robot
 audition is present in self-localization and navigating tasks using
-\nameref{para:sound-source-localization}, where the robot's ego-noise is seen
-as a nuisance. Moreover, robot-terrain interaction sound has been used in
-\nameref{para:terrain-classification}, which indicates that it carries
-significant information for environment understanding.
+\nameref{para:sound-source-localization}, where the robot's ego-noise is
+usually seen as a nuisance. 
 
-% TODO Review35: the authors mention that a similar work by L Marchegiani and P
-% Newman [1] using ego-noise to regress velocity and angular velocity are
-% limited in experiments and evaluation, but these limitations aren't
-% substantiated.
+% Review35: the authors mention that a similar work by L Marchegiani and P
+% Newman using ego-noise to regress velocity and angular velocity are limited
+% in experiments and evaluation, but these limitations aren't substantiated.
 
 \paragraph{Audio-based Odometry} \label{para:audio-based-odometry} In
 \cite{HowDoISoundLike}, the authors propose a classification framework to
@@ -19,45 +16,41 @@ velocity profiles. Additionally, they are able to detect a change in the
 inclination of the surface the robot is moving. However, the application of
 this framework is rather limited. On the other hand, \cite{marchegiani2018a}
 proposes a system capable of estimating ground robots' linear and angular
-velocities using onboard audio sensors. It uses deep neural networks to
-regress the motion of a vehicle from feature representations (based on
-Gammatone filterbanks) of the sensed audio. The authors claim that their work
-demonstrates an absolute error lower than 0.07 m/s and 0.02 rad/s and
-conclude that audio-based odometry systems should be useful auxiliary sources
-of odometry on the side of more traditional systems. However, the number of
-experiments and their evaluation is limited.
+velocities using onboard audio sensors. It uses deep neural networks to regress
+the motion of a vehicle from feature representations (based on Gammatone
+filterbanks) of the sensed audio. The authors conclude that audio-based
+odometry systems should be useful auxiliary sources of odometry on the side of
+more traditional systems. However, their evaluation is limited to a single
+experiment which is randomly split in a training and test dataset, without a
+validation split and they do not evaluate the computational cost of their
+solution.
 
 \paragraph{Sound Source localization} \label{para:sound-source-localization} In
 \cite{AcousticSLAM} and \cite{SoundSourceMapping}, the authors propose an
 algorithm to simultaneously localize a robot and map its environment (SLAM)
 using onboard audio sensors that perceive sound sources in its environment.
-\cite{SnakeSound} restricts the application to an in-pipe robot with a
-combination of orientation estimates from an inertial measurement unit and
-traversed distance estimations achieving as well both, self-localization and
-mapping of the pipeline. The distance is estimated using the time of flight of
-a reference sound generated with a loudspeaker at the entrance of the pipeline,
-which is measured with an onboard microphone. Alternatively, \cite{Allen2012}
-perceives the robot's intrinsic noise to localize it using external audio
-sensors. Combinations with other self-localization methods are proposed in
-\cite{AcousticFusion}, where onboard sound sensors identify and remove the
-effect of dynamic obstacles for Visual SLAM, and \cite{Gautam2014}, which
-localizes sounds using onboard microphones and uses them as navigation goals
-while using Visual SLAM for self-localization.
+Alternatively, \cite{Allen2012} perceives the robot's intrinsic noise to
+localize it using external audio sensors. Combinations with other
+self-localization methods are proposed in \cite{AcousticFusion}, where onboard
+sound sensors identify and remove the effect of dynamic obstacles for Visual
+SLAM, and \cite{Gautam2014}, which localizes sounds using onboard microphones
+and uses them as navigation goals while using Visual SLAM for
+self-localization.
 
 % REVIEW29 In related work, terrain classification seems not relevant to the
 % main topic of this paper.
 
-\paragraph{Terrain Classification} \label{para:terrain-classification} Multiple
-works propose to identify the terrain type of a robot's environment using
-onboard audio sensors. \cite{Valada2018} proposes a deep learning framework,
-based on a convolutional neural network, that uses only sound from
-vehicle-terrain interactions to classify a wide range of indoor and outdoor
-terrains. This method is extended in \cite{DeepTerrain}, where an unsupervised
-classifier that learns from vehicle-terrain interaction sounds supervises a
-pixel-wise semantic image classifier. Similarly, \cite{Kurobe2021} proposes a
-multi-modal self-supervised learning technique that switches between audio and
-image features to cluster terrain types. Extended as well by
-\cite{Ishikawa2021} using a multi-modal variational autoencoder and a Gaussian
-mixture model clustering algorithm on audio-visual data. It proposes as well to
-use gammatone-based filtering methods to extract audio features like in
-\cite{marchegiani2018a}.
+% \paragraph{Terrain Classification} \label{para:terrain-classification} Multiple
+% works propose to identify the terrain type of a robot's environment using
+% onboard audio sensors. \cite{Valada2018} proposes a deep learning framework,
+% based on a convolutional neural network, that uses only sound from
+% vehicle-terrain interactions to classify a wide range of indoor and outdoor
+% terrains. This method is extended in \cite{DeepTerrain}, where an unsupervised
+% classifier that learns from vehicle-terrain interaction sounds supervises a
+% pixel-wise semantic image classifier. Similarly, \cite{Kurobe2021} proposes a
+% multi-modal self-supervised learning technique that switches between audio and
+% image features to cluster terrain types. Extended as well by
+% \cite{Ishikawa2021} using a multi-modal variational autoencoder and a Gaussian
+% mixture model clustering algorithm on audio-visual data. It proposes as well to
+% use gammatone-based filtering methods to extract audio features like in
+% \cite{marchegiani2018a}.

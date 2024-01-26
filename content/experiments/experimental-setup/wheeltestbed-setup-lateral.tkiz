@@ -21,28 +21,28 @@
         % \foreach \y in {0,1,...,20} { \node [left] at (0,\y) {\y};}
 
 
-        % 1 Realsense D435i
-        \draw (8,5) rectangle (9.8,6.5) 
-            node[below left, fill=green]{\small 1};
-        % 2 Realsense T265
-        \draw (8,6.5) rectangle (9.8,8) 
-            node[below left, fill=green]{\small 2};
-        % 3 VideoMicNTG front
+        % C1 Realsense D435i
+        \draw[blue] (9.8,6.5) rectangle (8,5) 
+            node[above left, fill=blue, text=black]{\small C1};
+        % C2 Realsense T265
+        \draw[blue] (9.8,8) rectangle (8,6.5)
+            node[above left, fill=blue, text=black]{\small C2};
+        % 1 VideoMicNTG front
         \draw (6.2,4.5) rectangle (9.3,2.9)
-            node[above left, fill=green]{\small 3} ;
-        % 4 VideoMicNTG back
-        \draw (0.7,3.5) node[above right, fill=green]{\small 4} 
+            node[above left, fill=green]{\small 1} ;
+        % 2 VideoMicNTG back
+        \draw (0.7,3.5) node[above right, fill=green]{\small 2} 
             rectangle (3,6);
-        % 5 VideoMicNTG top
-        \draw (3.8,1.2) node[above right, fill=green]{\small 5} 
+        % 3 VideoMicNTG top
+        \draw (3.8,1.2) node[above right, fill=green]{\small 3} 
             rectangle (5.7,3.5);
-        % 6 SmartLav wheel
-        % 7 SmartLav top
+        % 4 SmartLav wheel
+        % 5 SmartLav top
         \draw (4.9,4.2) rectangle (5.5,5.2)
-            node[above left, fill=green]{\small 7};
-        % 8 Laptop microphone array
+            node[above left, fill=green]{\small 5};
+        % 6 Laptop microphone array
         \draw (1.5,16) rectangle (8.1,17)
-            node[below right, fill=green]{\small 8};
+            node[below right, fill=green]{\small 6};
         
     \end{scope}
 

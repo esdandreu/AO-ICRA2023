@@ -1,0 +1,89 @@
+% !TeX root = ./Andreu-Gimenez-AO-RoMoCo2024.tex
+\documentclass[conference,letterpaper]{src/IEEEtran}
+\def\IEEEtitletopspace{18pt}
+\IEEEsettextheight{54pt}{54pt}
+\IEEEsettextwidth{54pt}{54pt}
+\pdfminorversion=4
+
+% Identify funding in the first footnote. If that is unneeded, please comment
+% it out.
+% \IEEEoverridecommandlockouts
+
+%% Import additional packages and header definitions
+% For the LaTex newbies, \input let's you introduce a .tex file as if it were
+% part of the current file
+\input{src/packages}
+\usepackage{balance}
+
+%% Macros and colour definitions.
+\input{src/macros.tex}
+\input{src/colors.tex}
+
+%% Developer and debug options
+% \overfullrule=5pt % Uncomment this to show a black bar by overfull hboxes.
+% \usepackage{layout} % Uncomment and use the \layout command
+
+%% Definitions
+\newcommand{\RealSenseDepth}{%
+    \href{https://github.com/esdandreu/AO-ICRA2023/raw/master/appendices/recording-devices-specifications/realsense-d435i.pdf}{Intel
+        RealSense\texttrademark{} Depth Camera D435i}}
+\newcommand{\RealSenseTracking}{%
+    \href{https://github.com/esdandreu/AO-ICRA2023/raw/master/appendices/recording-devices-specifications/realsense-t265.pdf}{Intel
+        RealSense\texttrademark{} Tracking Camera T265}}
+\newcommand{\RODEVideoMicNTG}{%
+    \href{https://github.com/esdandreu/AO-ICRA2023/raw/master/appendices/recording-devices-specifications/rode-videmic-ntg.pdf}{RØDE
+        VideoMic\texttrademark{} NTG}}
+\newcommand{\RODESmartLav}{%
+    \href{https://github.com/esdandreu/AO-ICRA2023/raw/master/appendices/recording-devices-specifications/rode-videmic-ntg.pdf}{RØDE
+        SmartLav$+$}}
+\newcommand{\HPEliteDragonfly}{%
+    \href{https://github.com/esdandreu/AO-ICRA2023/raw/master/appendices/recording-devices-specifications/hp-elite-dragonfly.pdf}{HP
+        Elite Dragonfly}}
+
+\newcommand{\SRG}{\emph{Ishigami Lab}}
+
+%% Bibliography
+% Be careful with reference files list, always avoid whitespaces!
+\addbibresource{bibliography/references.bib}
+
+\begin{document}
+
+% ***************************************************************************
+%                              Front Matter
+% ***************************************************************************
+
+\title{Acoustic Odometry for Wheeled Robots \\ on Loose Sandy Terrain}
+
+\author{
+    \IEEEauthorblockN{Andreu Gimenez Bolinches}
+    \IEEEauthorblockA{\textit{Graduate School of Science and Technology} \\
+        Keio University, Japan \\
+        andreu@keio.jp}
+    \and
+    \IEEEauthorblockN{Genya Ishigami}
+    \IEEEauthorblockA{\textit{Graduate School of Science and Technology} \\
+        Keio University, Japan \\
+        ishigami@mech.keio.ac.jp}
+}
+
+\maketitle
+
+\begin{abstract}
+    \input{abstract.tex}
+\end{abstract}
+
+\begin{IEEEkeywords}
+    Audio-Visual SLAM, Robot Audition, Deep Learning Methods
+\end{IEEEkeywords}
+
+% ***************************************************************************
+%                              Main Content
+% ***************************************************************************
+\input{content.tex}
+
+% ***************************************************************************
+%                              Bibliography
+% ***************************************************************************
+\printbibliography[heading=bibintoc, title={References}]
+
+\end{document}

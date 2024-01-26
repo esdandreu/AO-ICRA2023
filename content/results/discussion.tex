@@ -2,61 +2,62 @@
 
 \balance
 
-The selected model behavior changes from one device to another. Devices that
-output an audio signal with a higher power tend to result in higher speed
-predictions, as it can be seen in \cref{fig:high-slip}, while the overall
-predicted curve is very similar. Meaning that even if the absolute value of the
-predicted velocity is not accurate, the model is able to recognize slippage
-conditions across different devices. Even with devices not present during
-training, as is the case in \cref{fig:other-methods}, where none of the devices
-shown in the evaluation were present during training. This indicates that
+The selected model behavior changes when it is applied to the output of
+different microphones. \Cref{fig:high-slip} shows that the overall predicted
+curve is very similar. Meaning that even if the absolute value of the predicted
+velocity is not accurate, the model is able to recognize slippage conditions
+across different microphones. Even with microphones not present during
+training, as is the case in \cref{fig:other-methods}, where none of the
+microphones shown in the evaluation were used for training. This indicates that
 fine-tuning \cite{TL2016} a model with might significantly increase its
-performance on a given device. Similarly, using wheel odometry to estimate the
-wheel angular speed while using the proposed system to identify the wheel
+performance on a given microphone. Similarly, using wheel odometry to estimate
+the wheel angular speed while using the proposed system to identify the wheel
 slippage may improve the performance and generalization.
 
-% TODO Review33: In Discussion section, the authors state "White noise affects
-% the performance of the proposed system as could be expected." I fail to
+% Review33: In Discussion section, the authors state "White noise affects the
+% performance of the proposed system as could be expected." I fail to
 % understand this. Do the author means that white noise will affect the
 % performance of the CNN classifier or the Gammatone filter for feature
 % extraction. This need to be discussed.
 
-White noise affects the performance of the proposed system, as could
-be expected. Nevertheless, a considerably large noise power compared to the
-signal power does not make the selected model unusable. As it can be seen in
-\cref{fig:noise-effect}, where a noise with a power 10 times the one of the
-audio signal (SNR -10 dB) only significantly affects the predictions on
-speeds close to 0ms. This indicates that white noise only significantly affects
-the prediction of speeds under a threshold determined by the signal-to-noise
-power ratio.
+The selected model has been evaluated in presence of synthetic white noise.
+It's performance was not significantly affected with signal-to-noise ratio of 0
+dB (noise with the same power as the signal). Nevertheless, scenarios with
+multiple powered wheels have not been evaluated. 
 
-% TODO Review35: Another vital scenario to consider is when multiple powered
+% Review35: Another vital scenario to consider is when multiple powered
 % wheels are operating simultaneously. Robots usually have multiple powered
 % revolutions, and it would be good to know the capability of this sensing
 % system in the presence of correlated interfering sources.
 
-Finally, this work can be compared with other odometry methods. On one hand,
-only \cite{marchegiani2018a} proposes an audio-based odometry method, claiming
-an average absolute error of 0.065 m/s when predicting velocities, which is
-comparable to the average ATE 0.001 m accumulated over the 66 audio frames
-contained in one second of the proposed system. But the proposed system also
-shows an average RPE in a 1 second window of 0.005 m, which is significantly
-% TODO Review 33: Under Discussion section paragraph 3, please use the IEEE
-% format when citing. For example, instead of Marchegiani and Newman, state the
-% paper the authors have worked on.
-lower that the drift claimed by \citeauthor{marchegiani2018a}. This comparison should
-also be taken with a grain of salt as no common benchmarking data exists.
-Moreover, it remains unknown the performance of the proposed system on
-rotational movement and under the presence of multiple moving wheels.
+In \citetitle{marchegiani2018a} \cite{marchegiani2018a}, the authors claim that
+their work demonstrates an absolute error of 0.065 m/s and 0.02 rad/s but they
+split their training and test set randomly. Their audio frames are generated
+with a sliding window of 1 s with 100 ms overlap which means that up to 20\% of
+a test audio frame might have been present in test audio frames. Instead, this
+work uses a a separate set of recordings for evaluation and conditions never
+seen in the training dataset.
 
-On the other hand, the method presented in \cite{Ojeda2006}, where wheel
+The method presented in \citetitle{Ojeda2006} \cite{Ojeda2006}, where wheel
 slippage is identified using the motor current and compensated in the wheel
-odometry computation, still outperforms the proposed system while being a
+odometry computation, outperforms the proposed system while being a
 computationally inexpensive method. They demonstrate accumulated drift of up to
 1\% of the traveled distance using the same range of longitudinal velocities
-under 0.07 m/s, while the proposed system results in an average error of
-16\% of the traveled distance across all devices and evaluation recordings.
-On the other hand, the authors mention that current-based slippage detection
-fails to correctly identify a wheel slipping over rocks instead of sand.
-Audio-based methods do have the potential to identify wheel slippage in both
-scenarios.
+under 0.07 m/s, while the proposed system results in an average error of 16\%
+of the traveled distance across all microphones and evaluation recordings.
+However, the authors mention that current-based slippage detection fails to
+correctly identify a wheel slipping over rocks instead of sand. Audio-based
+methods do have the potential to identify wheel slippage in both scenarios.
+
+This work comes with its drawbacks too, However the proposed system has been
+evaluated in only one terrain.
+
+% - The one-dimensional scenario can be seen as a simple slip ratio estimation
+% problem. 2D pose estimation including orientation must be taken into account
+% for Acoustic Odometry to bring value to the real wheeled robot location
+% problem.
+
+% - The maximum speed considered of 0.07 m/s is too slow to represent many real
+% mobile robot systems.
+
+% - Only one terrain condition has been taken into account.

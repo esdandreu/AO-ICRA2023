@@ -5,57 +5,53 @@ the problem of robot localization is simplified to a single dimension over a
 unique terrain type: A wheel that can only move along a longitudinal axis over
 loose sandy terrain. As this scenario can be easily reproduced with the
 available \nameref{subsec:experimental-setup}, making it possible to gather a
-whole new \nameref{subsec:datasets}. Experiments are conducted varying the
-different tuneable parameters in the \nameref{subsec:feature-extraction} module
-and \nameref{subsec:prediction-model} and a model is selected based on its
-performance and computational cost.
+new \nameref{subsec:datasets}. 
 
 \include*{\subdir/experimental-setup}
 
 \subsection{Datasets} \label{subsec:datasets}
 
-\subsubsection{Training} \label{subsubsec:training-dataset}
-used to train and validate the \nameref{subsec:prediction-model}. This work
-defines it as a collection of annotated overlapping segments.
+\subsubsection{Training} \label{subsubsec:training-dataset} A collection of
+annotated overlapping audio frames used to train and test the
+\nameref{subsec:prediction-model}.
 
 The annotated variables are the longitudinal velocity $V_x$, the wheel angular
-speed $V_\omega$ and the slip ratio $s$. This work annotates the segments with
-a weighted average of the measurements within its duration.
+speed $V_\omega$ and the slip ratio $s$. This work annotates the audio frames
+with a weighted average of the measurements within its duration.
 
-% TODO This phrase is confusing
+Audio frames are extracted from test recordings where the wheel test bed is
+used to control different variables as the slip ratio and the wheel angular
+velocity. A total of 168 different recordings that make a total of 1 hour for
+each of the 6 microphones where captured for the training dataset.  
 
-Segments are collected from a set of training recordings captured under
-different driving conditions, which are defined by the combination of the
-following controlled variables: \emph{slip ratio} as defined in
-\cref{eq:slip-ratio}. Ranging between -0.3 and 0.6. Being free or uncontrolled
-slip an additional option; \emph{load} measured in kg added to the base
-carriage weight (which is 11.2 kg) taking values of 0 kg, 5 kg and 10 kg;
-\emph{wheel angular velocity} ranging from 5 deg/s to 30 deg/s in steps of 5
-deg/s; \emph{contact}, whether the wheel is making contact with the ground or
-is suspended in the air. A total of 168 different recordings that make a total
-of 1 hour for each of the 8 recording devices where captured for the training
-dataset.
+\subsubsection{Evaluation} \label{subsubsec:evaluatio-dataset} 7 recordings
+with a total duration of 17 minutes used to evaluate the performance of the
+system under more realistic and challenging conditions. Unlike in the test
+dataset, where the longitudinal position was controlled by the wheel test bed,
+the carriage unit is allowed free longitudinal movement and only the wheel
+drive motor is active. High wheel slippage is induced by external forces and
+the shape of the terrain.
 
-\subsubsection{Evaluation} \label{subsubsec:evaluatio-dataset}
-used to evaluate the performance of the system under more realistic and
-challenging conditions unseen during training like high slippage induced by an
-external force. Composed of 7 recordings with a total duration of 17 minutes.
 
 \subsection{Selected model} \label{subsec:selected-model} 
 
-% TODO Reveiw33: Why is the range between [50,80000]? 80KHz is beyond audible
-% frequency range. Are the microphone able to capture at this frequency range?
-% What microphones are being used?
+% TODO Model experiments
+Experiments are conducted varying the different tuneable parameters in the
+\nameref{subsec:feature-extraction} module and
+\nameref{subsec:prediction-model} and a model is selected based on its
+performance and computational cost.
+
+% TODO More info about the model. A table would be nice.
 
 This work selects a model trained on a dataset of segments of 50 frames, each
-of them spans over 15 milliseconds and has 64 features from a single
-\nameref{subsubsec:gammatone-filterbank} extractor. The extractor is applied on
-the average of the audio signal channels with a frequency range of [50, 80000]
-Hz and features are represented on the Bel scale. The model is trained with
-data from all available recordings but only devices 3, 4, 6 and 8 as listed in
-\cref{table:wheeltestbed-setup-2-devices}. Training data is augmented with
-added random SNR noise. The model task is to classify the longitudinal velocity
-given a set of 28 different linearly distributed longitudinal velocity ranges
-taking into account the order of the classes, ordinal classification, as
-introduced in \cite{ordclass2006}. The selected model makes use of a batch
-normalization layer and has a size of 51.5MB. 
+of them spans over 15 milliseconds and has 64 features from a single Gammatone
+filterbank extractor. The extractor is applied on the average of the audio
+signal channels with a frequency range of [50, 8000] Hz and features are
+represented on the Bel scale. The model is trained with data from a subset of
+microphones (1, 2, 4 and 6 as shown in \cref{fig:wheeltestbed-setup-2}).
+Training data is augmented with added random SNR noise. The model task is to
+classify the longitudinal velocity given a set of 28 different linearly
+distributed longitudinal velocity ranges taking into account the order of the
+classes, ordinal classification, as introduced in \cite{ordclass2006}. The
+selected model makes use of a batch normalization layer and has a size of
+51.5MB. 

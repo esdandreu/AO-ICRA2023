@@ -1,28 +1,26 @@
 \section{Results} \label{sec:results}
 
 \Cref{table:results-selected-model} shows the average performance of the
-selected in the \nameref{subsubsec:evaluatio-dataset} dataset. Performance is measured
-with commonly used odometry and simultaneous localization and mapping metrics
-as described in \cite{Measuring2019}. \Cref{fig:high-slip} shows its results on
-an evaluation recording characterized by high slippage driving conditions using
-two different devices.
+selected in the \nameref{subsubsec:evaluatio-dataset} dataset. Performance is
+measured with commonly used odometry and simultaneous localization and mapping
+metrics as described in \cite{Measuring2019}. \Cref{fig:high-slip} shows its
+results on an evaluation recording characterized by high slippage driving
+conditions.
 
 \begin{table}
     \centering
     \begin{tabular}{|c|c|c|}
         \hline
-                        & Mean ATE [m] & Mean RPE [m/s] \\ \hline
+                        & Mean ATE [m] & Mean RPE [m] \\ \hline
         All microphones & $1.02e-03$   & $5.10e-03$     \\
         \hline
     \end{tabular}
-    % TODO Review39: There is inconsistency in the criterion used to measure
-    % prediction quality. in table 2, RPE is represented with unit(m/s) while
-    % in Figure 5-8, they are using (m).
     \caption[Selected model average performance across evaluation recordings
-        and devices]{Selected model average performance across all evaluation
-        recordings and all devices. Absolute Trajectory Error (ATE) is computed
-        between frames with a duration of 15 ms and Relative Pose Error (RPE)
-        is computed using time windows 1s long.}
+        and microphones]{Selected model average performance across all
+        evaluation recordings and averaged across all microphones. Absolute
+        Trajectory Error (ATE) is computed between frames with a duration of
+        15 ms and Relative Pose Error (RPE) \cite{Measuring2019} is computed
+        using time windows 1 s long.}
     \label{table:results-selected-model}
 \end{table}
 
@@ -31,9 +29,14 @@ two different devices.
     \centering
     \begin{tikzpicture} \node [anchor=south west] at (0,0) {
             \includegraphics[width=.95\textwidth]{\subdir/high-slip.png}
-        }; \node [anchor=south west, text width=.6\textwidth] at (0.5,0.5) {
-            \caption{Selected model evaluated on a recording characterized by
-            high slippage conditions using two different recording devices.}
+        }; \node [anchor=south west, text width=.65\textwidth] at (0,-0.5) {
+            \caption{Evaluation of a recording characterized by high slippage
+            conditions. The left figure shows speed estimated using the
+            selected model (\emph{AO}) and the wheel test bed measurements of
+            wheel angular velocity (\emph{wheel odometry}) and position
+            (\emph{ground truth}). The integrated position is shown in the
+            center figure. The right figure shows the Relative Pose Error}
+            % TODO Review
             \label{fig:high-slip}
         }; \end{tikzpicture}
 \end{figure*}
@@ -41,20 +44,24 @@ two different devices.
 % Review33: The authors state "Generally, white noise increases the value of
 % the estimated motion." why is that?
 
-\subsection{Noise} One can see in \cref{fig:noise-effect} the behavior of the
-selected model against white noise. Signal-to-Noise ratios of -20 dB impede the model to
-recognize situations where the wheel is not moving.
+\subsection{Noise} The selected model has been evaluated in the same recording
+shown in \cref{fig:high-slip} in the presence of synthetic white noise of
+varying signal-to-noise ratio values. Noise with the same power as the signal
+(SNR 0 dB) increases the mean Relative Pose Error 2.62\%. SNR of -10 dB affects
+significantly the predictions at low speeds and when the robot is not moving
+increasing the RPM a 38.91\%.
 
-\begin{figure*}
-    \centering
-    \begin{tikzpicture} \node [anchor=south west] at (0,0) {
-            \includegraphics[width=.95\textwidth]{\subdir/noise-effect.png}
-        }; \node [anchor=south west, text width=.6\textwidth] at (0.5,0.2) {
-            \caption{Selected model evaluated on a recording with added white
-            noise with varying signal-to-noise ratio values.}
-            \label{fig:noise-effect}
-        }; \end{tikzpicture}
-\end{figure*}
+% \begin{figure*}
+%     \centering
+%     \begin{tikzpicture} \node [anchor=south west] at (0,0) {
+%             \includegraphics[width=.95\textwidth]{\subdir/noise-effect.png}
+%         }; \node [anchor=south west, text width=.65\textwidth] at (0,0.2) {
+%             \caption{Selected model evaluated on the same recording as
+%             \cref{fig:high-slip} with added white noise with varying
+%             signal-to-noise ratio values.}
+%             \label{fig:noise-effect}
+%         }; \end{tikzpicture}
+% \end{figure*}
 
 \subsection{Computational cost} Tests with the selected model on a CPU show
 that the time to compute the feature extraction is a 40\% of the total time to
@@ -66,29 +73,27 @@ this particular hardware. Using hardware acceleration with CUDA the total time
 to process a new frame is slightly lower: 1.93 ms on a NVIDIA GeForce RTX 2060
 GPU.
 
-% TODO Remove Visual SLAM claims
 \subsection{Compared with other models} The selected model is evaluated against
 two other odometry methods: Wheel odometry computed from the ground truth wheel
-angular speed; and Visual SLAM using Intel\textregistered{}
-RealSense\texttrademark{} Tracking Camera T265, which is based on visual
-odometry. \Cref{fig:other-methods} is the evaluation in an ideal scenario for
-all methods. It shows that the selected model can perform with an accuracy
-comparable to commercial visual-based methods in this simplified scenario.
-\Cref{fig:VO-challenge} instead corresponds to a scenario that is challenging
-for visual odometry. Dynamic objects are moved in the camera field of view and
-lightning conditions are changed during the recording. One can see in this
-evaluation that the vulnerabilities of audio-based odometry and visual-based
-odometry do not overlap. Which makes Acoustic Odometry more accurate in certain
-scenarios where the visual odometry vulnerabilities are exploited.
+angular speed; and Intel\textregistered{} RealSense\texttrademark{} Tracking
+Camera T265, which is based on visual odometry. \Cref{fig:other-methods} is the
+evaluation in an ideal scenario for all methods. It shows that the selected
+model can perform with an accuracy comparable to commercial visual-based
+methods in this simplified scenario. \Cref{fig:VO-challenge} instead
+corresponds to a scenario that is challenging for visual odometry. Dynamic
+objects are moved in the camera field of view and lightning conditions are
+changed during the recording. One can see in this evaluation that the
+vulnerabilities of audio-based odometry and visual-based odometry do not
+overlap.
 
 \begin{figure*}
     \centering
     \begin{tikzpicture} \node [anchor=south west] at (0,0) {
             \includegraphics[width=.95\textwidth]{\subdir/other-methods.png}
-        }; \node [anchor=south west, text width=.6\textwidth] at (0.5,0.5) {
-            \caption{Selected model evaluated
-                evaluated against Visual SLAM (based on visual odometry) and wheel
-                odometry.}
+        }; \node [anchor=south west, text width=.65\textwidth] at (0,0.5) {
+            \caption{Selected model evaluated evaluated against wheel odometry
+            and Intel\textregistered{} RealSense\texttrademark{} Tracking
+            Camera T265 (based on visual odometry).}
             \label{fig:other-methods}
         }; \end{tikzpicture}
 \end{figure*}
@@ -97,12 +102,12 @@ scenarios where the visual odometry vulnerabilities are exploited.
     \centering
     \begin{tikzpicture} \node [anchor=south west] at (0,0) {
             \includegraphics[width=.95\textwidth]{\subdir/VO-challenge.png}
-        }; \node [anchor=south west, text width=.6\textwidth] at (0.5,0.1) {
-            \caption{
-                Selected model evaluated against Visual SLAM (based on visual odometry)
-                in a scenario where visual odometry vulnerabilities are exploited:
-                Dynamic objects are moved in the camera field of view and lightning
-                conditions are changed during the recording.}
+        }; \node [anchor=south west, text width=.65\textwidth] at (0,0) {
+            \caption{Selected model evaluated against Intel\textregistered{}
+            RealSense\texttrademark{} Tracking Camera T265 (based on visual
+            odometry) in a scenario where visual odometry vulnerabilities are
+            exploited: Dynamic objects are moved in the camera field of view
+            and lightning conditions are changed during the recording.}
             \label{fig:VO-challenge}
         }; \end{tikzpicture}
 \end{figure*}
