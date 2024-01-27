@@ -1,18 +1,18 @@
 \subsection{Discussion} \label{subsec:discussion}
 
-\balance
+\Cref{fig:high-slip} shows that the overall predicted curve is very similar
+when the selected model is applied to the to the output of different
+microphones. Meaning that even if the absolute value of the predicted velocity
+is not accurate, the model is able to recognize slippage conditions across
+different microphones. Even with microphones not present during training, as is
+the case in \cref{fig:other-methods}, where none of the microphones shown in
+the evaluation were used for training. This indicates that fine-tuning
+\cite{TL2016} a model might significantly increase its performance on a given
+microphone. 
 
-The selected model behavior changes when it is applied to the output of
-different microphones. \Cref{fig:high-slip} shows that the overall predicted
-curve is very similar. Meaning that even if the absolute value of the predicted
-velocity is not accurate, the model is able to recognize slippage conditions
-across different microphones. Even with microphones not present during
-training, as is the case in \cref{fig:other-methods}, where none of the
-microphones shown in the evaluation were used for training. This indicates that
-fine-tuning \cite{TL2016} a model with might significantly increase its
-performance on a given microphone. Similarly, using wheel odometry to estimate
-the wheel angular speed while using the proposed system to identify the wheel
-slippage may improve the performance and generalization.
+% Similarly, using wheel odometry to estimate the wheel angular speed while
+% using the proposed system to identify the wheel slippage may improve the
+% performance and generalization.
 
 % Review33: In Discussion section, the authors state "White noise affects the
 % performance of the proposed system as could be expected." I fail to
